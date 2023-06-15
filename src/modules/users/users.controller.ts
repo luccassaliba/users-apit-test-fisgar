@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/commo
 import { UserInputDTO } from "./dto/input.dto";
 import { UserService } from "./users.service";
 import { UserOutputDTO } from "./dto/output.dto";
+import { UserUpdateDTO } from "./dto/update.dto";
 
 @Controller('users')
 export class UserController {
@@ -37,7 +38,7 @@ export class UserController {
     }
 
     @Patch(':id')
-    async update(@Param('id') id: string, @Body() newData : UserInputDTO) {
+    async update(@Param('id') id: string, @Body() newData : UserUpdateDTO) {
         const idNumber = parseInt(id)
         const updatedUser = await this.userService.update({ where: {id: idNumber}, data: newData})
 
